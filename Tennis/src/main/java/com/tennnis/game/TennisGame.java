@@ -7,6 +7,7 @@ public class TennisGame {
 	static final String SCORE_THIRTY_ALL = "Thirty All";
 	private static final String SCORE_DEUCE = "Deuce";
 	private static final String ADVANTAGE = "Advantage";
+	private static final String GAME = "Game";
 	private int playerOneScore;
 	private int playerTwoScore;
 	private final String playerOne;
@@ -33,7 +34,12 @@ public class TennisGame {
 				return SCORE_DEUCE;
 			}
 		}else {
-			return ADVANTAGE + " "+ (playerOneScore > playerTwoScore ? playerOne : playerTwo) ;
+			if(Math.abs(playerOneScore-playerTwoScore)==1) {
+				return ADVANTAGE + " "+ (playerOneScore > playerTwoScore ? playerOne : playerTwo) ;
+			}
+			else {
+				return GAME + " "+ (playerOneScore > playerTwoScore ? playerOne : playerTwo) ;
+			}
 		}
 	}
 
