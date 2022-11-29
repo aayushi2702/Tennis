@@ -20,7 +20,8 @@ public class TennisGameTest {
 		"0,0,Love All" ,
 		"1,1,Fifteen All",
 		"2,2,Thirty All",
-		"3,3,Deuce"
+		"3,3,Deuce",
+		"4,3,Advantage PlayerOneName",
 	})
 	void parameterizedTestCaseforEachTest(int playerOneScore, int playerTwoScore, String expectedScore) {
 		for(int i=0; i<playerOneScore; i++) {

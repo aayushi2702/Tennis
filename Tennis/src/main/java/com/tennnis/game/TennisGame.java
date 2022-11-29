@@ -6,10 +6,15 @@ public class TennisGame {
 	static final String SCORE_FIFTEEN_ALL = "Fifteen All";
 	static final String SCORE_THIRTY_ALL = "Thirty All";
 	private static final String SCORE_DEUCE = "Deuce";
+	private static final String ADVANTAGE = "Advantage";
 	private int playerOneScore;
 	private int playerTwoScore;
-
+	private final String playerOne;
+	private final String playerTwo;
+	
 	public TennisGame(String playerOne, String playerTwo) {
+		this.playerOne=playerOne;
+		this.playerTwo=playerTwo;
 		
 	}
 
@@ -27,8 +32,9 @@ public class TennisGame {
 			else {
 				return SCORE_DEUCE;
 			}
+		}else {
+			return ADVANTAGE + " "+ (playerOneScore > playerTwoScore ? playerOne : playerTwo) ;
 		}
-		return SCORE_LOVE_ALL;
 	}
 
 	public void playerOneScored() {
