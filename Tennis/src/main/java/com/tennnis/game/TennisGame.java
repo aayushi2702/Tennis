@@ -5,6 +5,7 @@ public class TennisGame {
 	static final String SCORE_LOVE_ALL = "Love All";
 	static final String SCORE_FIFTEEN_ALL = "Fifteen All";
 	static final String SCORE_THIRTY_ALL = "Thirty All";
+	private static final String SCORE_DEUCE = "Deuce";
 	private int playerOneScore;
 	private int playerTwoScore;
 
@@ -22,6 +23,9 @@ public class TennisGame {
 			}
 			else if(playerOneScore == 2) {
 				return SCORE_THIRTY_ALL;
+			}
+			else {
+				return SCORE_DEUCE;
 			}
 		}
 		return SCORE_LOVE_ALL;
