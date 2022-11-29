@@ -8,7 +8,10 @@ public class TennisGame {
 	private static final String SCORE_DEUCE = "Deuce";
 	private static final String ADVANTAGE = "Advantage";
 	private static final String GAME = "Game";
-	private static final String SCORE_LOVE_FIFTEEN = "Love Fifteen";
+	private static final String SCORE_LOVE = "Love";
+	private static final String SCORE_FIFTEEN = "Fifteen";
+	private static final String SCORE_THIRTY = "Thirty";
+	private static final String SCORE_FORTY = "Forty";
 	private int playerOneScore;
 	private int playerTwoScore;
 	private final String playerOne;
@@ -39,7 +42,7 @@ public class TennisGame {
 					return GAME + " " + getHighScorerPlayerName(playerOneScore, playerOneScore);
 				}
 			}else {
-				return SCORE_LOVE_FIFTEEN;
+				return getPlayerScore(playerOneScore) +" "+ getPlayerScore(playerTwoScore);
 			}
 		}
 	}
@@ -59,5 +62,17 @@ public class TennisGame {
 	private String getHighScorerPlayerName(int playerOneScore2, int playerOneScore3) {
 		return playerOneScore > playerTwoScore ? playerOne : playerTwo;
 	}
+	
+	private String getPlayerScore(int playerScore) {
+		if(playerScore==0)
+			return SCORE_LOVE;
+		else if(playerScore==1)
+			return SCORE_FIFTEEN;
+		else if(playerScore==2)
+			return SCORE_THIRTY;
+		else
+			return SCORE_FORTY;
+	}
+
 
 }
