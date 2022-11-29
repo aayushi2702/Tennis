@@ -8,6 +8,7 @@ public class TennisGame {
 	private static final String SCORE_DEUCE = "Deuce";
 	private static final String ADVANTAGE = "Advantage";
 	private static final String GAME = "Game";
+	private static final String SCORE_LOVE_FIFTEEN = "Love Fifteen";
 	private int playerOneScore;
 	private int playerTwoScore;
 	private final String playerOne;
@@ -31,10 +32,14 @@ public class TennisGame {
 				return SCORE_DEUCE;
 			}
 		} else {
-			if (pointDifferenceIsOne(playerOneScore, playerTwoScore)) {
-				return ADVANTAGE + " " + getHighScorerPlayerName(playerOneScore,playerOneScore);
-			} else {
-				return GAME + " " + getHighScorerPlayerName(playerOneScore,playerOneScore);
+			if (Math.max(playerTwoScore, playerOneScore)>3) {
+				if (pointDifferenceIsOne(playerOneScore, playerTwoScore)) {
+					return ADVANTAGE + " " + getHighScorerPlayerName(playerOneScore, playerOneScore);
+				} else {
+					return GAME + " " + getHighScorerPlayerName(playerOneScore, playerOneScore);
+				}
+			}else {
+				return SCORE_LOVE_FIFTEEN;
 			}
 		}
 	}
