@@ -25,4 +25,13 @@ public class TennisGameTest {
 		tennisGame.playerTwoScored();
 		assertThat(tennisGame.getGameScore()).isEqualTo("Fifteen All");
 	}
+
+	@Test
+	public void ThirtyAllTest() {
+		tennisGame.playerOneScored();
+		tennisGame.playerTwoScored();
+		tennisGame.playerOneScored();
+		tennisGame.playerTwoScored();
+		assertThat(tennisGame.getGameScore()).isEqualTo("Thirty All");
+	}
 }
