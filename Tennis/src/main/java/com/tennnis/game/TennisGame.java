@@ -32,16 +32,15 @@ public class TennisGame {
 			}
 		} else {
 			if (pointDifferenceIsOne(playerOneScore, playerTwoScore)) {
-				return ADVANTAGE + " " + (playerOneScore > playerTwoScore ? playerOne : playerTwo);
+				return ADVANTAGE + " " + getHighScorerPlayerName(playerOneScore,playerOneScore);
 			} else {
-				return GAME + " " + (playerOneScore > playerTwoScore ? playerOne : playerTwo);
+				return GAME + " " + getHighScorerPlayerName(playerOneScore,playerOneScore);
 			}
 		}
 	}
 
 	public void playerOneScored() {
 		playerOneScore++;
-
 	}
 
 	public void playerTwoScored() {
@@ -50,6 +49,10 @@ public class TennisGame {
 
 	private boolean pointDifferenceIsOne(int playerOneScore, int playerTwoScore) {
 		return Math.abs(playerOneScore-playerTwoScore)==1;
+	}
+	
+	private String getHighScorerPlayerName(int playerOneScore2, int playerOneScore3) {
+		return playerOneScore > playerTwoScore ? playerOne : playerTwo;
 	}
 
 }
