@@ -1,10 +1,9 @@
 package com.tennnis.game;
 
-public class TennisGame {
+import java.util.HashMap;
+import java.util.Map;
 
-	static final String SCORE_LOVE_ALL = "Love All";
-	static final String SCORE_FIFTEEN_ALL = "Fifteen All";
-	static final String SCORE_THIRTY_ALL = "Thirty All";
+public class TennisGame {
 	private static final String SCORE_DEUCE = "Deuce";
 	private static final String ADVANTAGE = "Advantage";
 	private static final String GAME = "Game";
@@ -12,10 +11,19 @@ public class TennisGame {
 	private static final String SCORE_FIFTEEN = "Fifteen";
 	private static final String SCORE_THIRTY = "Thirty";
 	private static final String SCORE_FORTY = "Forty";
+	private static final String STRING_ALL = "All";
 	private int playerOneScore;
 	private int playerTwoScore;
 	private final String playerOne;
 	private final String playerTwo;
+	private static final Map<Integer, String> SCORE_MAP = new HashMap<>();
+	
+	static {
+		SCORE_MAP.put(0, SCORE_LOVE);
+		SCORE_MAP.put(1, SCORE_FIFTEEN);
+		SCORE_MAP.put(2, SCORE_THIRTY);
+		SCORE_MAP.put(3, SCORE_FORTY);
+	}
 	
 	public TennisGame(String playerOne, String playerTwo) {
 		this.playerOne = playerOne;
@@ -25,22 +33,10 @@ public class TennisGame {
 
 	public String getGameScore() {
 		if (playerOneScore == playerTwoScore) {
-			if (playerOneScore == 0) {
-				return SCORE_LOVE_ALL;
-			} else if (playerOneScore == 1) {
-				return SCORE_FIFTEEN_ALL;
-			} else if (playerOneScore == 2) {
-				return SCORE_THIRTY_ALL;
-			} else {
-				return SCORE_DEUCE;
-			}
+			return playerOneScore > 2 ? SCORE_DEUCE : getPlayerScore(playerOneScore) + " " + STRING_ALL;
 		} else {
 			if (Math.max(playerTwoScore, playerOneScore)>3) {
-				if (pointDifferenceIsOne(playerOneScore, playerTwoScore)) {
-					return ADVANTAGE + " " + getHighScorerPlayerName(playerOneScore, playerOneScore);
-				} else {
-					return GAME + " " + getHighScorerPlayerName(playerOneScore, playerOneScore);
-				}
+				return (pointDifferenceIsOne(playerOneScore, playerTwoScore) ? ADVANTAGE : GAME) + " " + getHighScorerPlayerName();
 			}else {
 				return getPlayerScore(playerOneScore) +" "+ getPlayerScore(playerTwoScore);
 			}
@@ -59,19 +55,12 @@ public class TennisGame {
 		return Math.abs(playerOneScore-playerTwoScore)==1;
 	}
 	
-	private String getHighScorerPlayerName(int playerOneScore2, int playerOneScore3) {
+	private String getHighScorerPlayerName() {
 		return playerOneScore > playerTwoScore ? playerOne : playerTwo;
 	}
 	
 	private String getPlayerScore(int playerScore) {
-		if(playerScore==0)
-			return SCORE_LOVE;
-		else if(playerScore==1)
-			return SCORE_FIFTEEN;
-		else if(playerScore==2)
-			return SCORE_THIRTY;
-		else
-			return SCORE_FORTY;
+		return SCORE_MAP.get(playerScore);
 	}
 
 
