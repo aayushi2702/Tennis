@@ -2,22 +2,27 @@ package com.tennnis.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TennisGameTest {
-	
-	private final TennisGame tennisGame = new TennisGame("PlayerOne","PlayerTwo");
-	
+
+	private TennisGame tennisGame;
+
+	@Before
+	public void setUp() {
+		tennisGame = new TennisGame("PlayerOneName", "PlayerTwoName");
+	}
+
 	@Test
-    public void LoveAllTest() {
+	public void LoveAllTest() {
 		assertThat(tennisGame.getGameScore()).isEqualTo("Love All");
-    }
-	
+	}
+
 	@Test
 	public void FifteenAllTest() {
-		TennisGame tennisGame = new TennisGame("PlayerOne","PlayerTwo");
 		tennisGame.playerOneScored();
 		tennisGame.playerTwoScored();
 		assertThat(tennisGame.getGameScore()).isEqualTo("Fifteen All");
-    }
+	}
 }
